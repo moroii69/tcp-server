@@ -9,7 +9,9 @@ concurrent TCP server in go with per-client goroutines and channel-based message
 - raw TCP socket communication
 - simple echo-style response
 
-<img src="https://i.postimg.cc/FFPrczbG/NVIDIA-Overlay-z9Eh6mj-H1e.png" width="420" />
+| server logs (`go run main.go`) | client (`ncat localhost 3000`) |
+|-------------------------------|--------------------------------|
+| <img src="https://i.postimg.cc/FFPrczbG/NVIDIA-Overlay-z9Eh6mj-H1e.png" width="320" /> | <img src="https://i.postimg.cc/W1ZTQ7BB/NVIDIA-Overlay-Dd-FVDNIrs-M.png" width="320" /> |
 
 ## run
 

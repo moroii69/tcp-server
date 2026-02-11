@@ -1,9 +1,11 @@
 package main
+
 import (
 	"fmt"
 	"log"
 	"net"
 )
+
 type Message struct {
 	from    string // sender address
 	payload []byte // message content
@@ -14,6 +16,7 @@ type Server struct {
 	quitch     chan struct{}
 	msgch      chan Message // buffered to avoid blocking
 }
+
 func NewServer(listenAddr string) *Server {
 	return &Server{
 		listenAddr: listenAddr,
@@ -58,7 +61,7 @@ func (s *Server) readLoop(conn net.Conn) {
 			from:    conn.RemoteAddr().String(),
 			payload: buf[:n],
 		}
-		conn.Write([]byte("Message sent\n"))
+		_, _ = conn.Write(buf[:n])
 	}
 }
 func main() {

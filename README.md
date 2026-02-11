@@ -9,6 +9,8 @@ concurrent TCP server in go with per-client goroutines and channel-based message
 - raw TCP socket communication
 - simple echo-style response
 
+<img src="https://i.postimg.cc/FFPrczbG/NVIDIA-Overlay-z9Eh6mj-H1e.png" width="420" />
+
 ## run
 
 ```bash

@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 )
 
 type Message struct {
 	from    string // sender address
 	payload []byte // message content
+	at 		time.Time // timestamp
 }
 type Server struct {
 	listenAddr string
@@ -60,6 +62,7 @@ func (s *Server) readLoop(conn net.Conn) {
 		s.msgch <- Message{
 			from:    conn.RemoteAddr().String(),
 			payload: buf[:n],
+			at: time.Now(),
 		}
 		_, _ = conn.Write(buf[:n])
 	}
@@ -69,7 +72,11 @@ func main() {
 	// handle incoming messages
 	go func() {
 		for msg := range server.msgch {
-			fmt.Printf("Received message (%s):%s\n", msg.from, string(msg.payload))
+			fmt.Printf("[%s] %s: %s\n",
+				msg.at.Format(time.RFC3339),
+				msg.from,
+				string(msg.payload),
+			)
 		}
 	}()
 	log.Fatal(server.Start())
